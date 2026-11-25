@@ -1,0 +1,545 @@
+{
+  "container" : "C",
+  "calculation" : [ ],
+  "identifier" : "C_Fiscal_calendar",
+  "propertyOverride" : [ "refActiveParameterValueSet", "identifier", "label", "property._MUI_propertySetByUser_comment", "comment" ],
+  "refActiveParameterValueSet" : "RESERVED_DefaultParameterValueSet",
+  "expressionLocale" : "en-us",
+  "label" : "Fiscal calendar",
+  "version" : "24.0",
+  "useSpec" : [ {
+    "identifier" : "M1",
+    "searchPath" : "/content/folder[@name='Calendars']/folder[@name='Source files']/uploadedFile[@name='FiscalCalendar.csv']",
+    "dataCacheExpiry" : "0",
+    "type" : "file",
+    "storeID" : "iF6FD199B9262438F95ABEF5F2073DA45",
+    "ancestors" : [ {
+      "storeID" : ".public_folders",
+      "defaultName" : "Team Content"
+    }, {
+      "storeID" : "i80D5042907BA449EB57D116409D04CA9",
+      "defaultName" : "Calendars"
+    }, {
+      "storeID" : "iF3184AA53A874BA7A0BE4ABF394DADE3",
+      "defaultName" : "Source files"
+    } ]
+  } ],
+  "parameterValueSet" : [ {
+    "identifier" : "RESERVED_DefaultParameterValueSet",
+    "propertyOverride" : [ "NEW" ]
+  } ],
+  "dataRetrievalMode" : "liveConnection",
+  "querySubject" : [ {
+    "identifier" : "FiscalCalendar_csv",
+    "ref" : [ "M1.FiscalCalendar_csv" ],
+    "item" : [ {
+      "filter" : {
+        "identifier" : "Prior_Month_1",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\r\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\r\n// validate: 1 = 1\r\n#$_this.parent.idForExpression# >=\r\n   #queryValue($_this.parent.split.ref + '.dWeek',\r\n              $_this.parent.split.ref + '.TheDate = ' +\r\n              queryValue($_this.parent.split.ref + '.PW_TheDate',\r\n                         $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\r\n            )#\r\nAND\r\n#$_this.parent.idForExpression# <\r\n   #queryValue($_this.parent.split.ref + '.dWeek',\r\n               $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)#",
+        "hidden" : false,
+        "property" : [ {
+          "name" : "_MUI_propertySetByUser_hidden",
+          "value" : "\"true\""
+        } ],
+        "label" : "Prior Week"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Prior_Month",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n   #queryValue($_this.parent.split.ref + '.dMonth',\n              $_this.parent.split.ref + '.TheDate = ' +\n              queryValue($_this.parent.split.ref + '.PM_TheDate',\n                         $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\n            )#\nAND\n#$_this.parent.idForExpression# <\n   #queryValue($_this.parent.split.ref + '.dMonth',\n               $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)#",
+        "hidden" : false,
+        "property" : [ {
+          "name" : "_MUI_propertySetByUser_hidden",
+          "value" : "\"true\""
+        } ],
+        "label" : "Prior Month"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Prior_Quarter",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n  #queryValue($_this.parent.split.ref + '.dQuarter',\n              $_this.parent.split.ref + '.TheDate = ' +\n        queryValue($_this.parent.split.ref + '.PQ_TheDate',\n                   $_this.parent.split.ref + '.TheDate = ' + $_as_of_date\n        )\n  )#\nAND\n#$_this.parent.idForExpression# <\n   #queryValue($_this.parent.split.ref + '.dQuarter',\n          $_this.parent.split.ref + '.TheDate = ' + $_as_of_date\n    )#",
+        "hidden" : false,
+        "property" : [ {
+          "name" : "_MUI_propertySetByUser_hidden",
+          "value" : "\"true\""
+        } ],
+        "label" : "Prior Quarter"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Prior_Year",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n   #queryValue(\n  $_this.parent.split.ref + '.dYear',\n  $_this.parent.split.ref + '.TheDate = ' +\n     queryValue($_this.parent.split.ref + '.PY_TheDate',\n                $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\n)#\nAND\n#$_this.parent.idForExpression# <\n    #queryValue($_this.parent.split.ref + '.dYear',\n    $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)#",
+        "hidden" : false,
+        "property" : [ {
+          "name" : "_MUI_propertySetByUser_hidden",
+          "value" : "\"true\""
+        } ],
+        "label" : "Prior Year"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Current_Week",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\r\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\r\n// validate: 1 = 1\r\n#$_this.parent.idForExpression# >=\r\n     #queryValue($_this.parent.split.ref + '.dWeek',\r\n                $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)#\r\nAND\r\n#$_this.parent.idForExpression# <\r\n    #queryValue($_this.parent.split.ref + '.dWeek',\r\n               $_this.parent.split.ref + '.TheDate = ' +\r\n               queryValue($_this.parent.split.ref + '.NW_TheDate',\r\n                         $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\r\n)#",
+        "label" : "Current Week"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Current_Month",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n     #queryValue($_this.parent.split.ref + '.dMonth',\n                $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)#\nAND\n#$_this.parent.idForExpression# <\n    #queryValue($_this.parent.split.ref + '.dMonth',\n               $_this.parent.split.ref + '.TheDate = ' +\n               queryValue($_this.parent.split.ref + '.NM_TheDate',\n                         $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\n)#",
+        "label" : "Current Month"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Current_Quarter",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n      #queryValue($_this.parent.split.ref + '.dQuarter',\n                  $_this.parent.split.ref + '.TheDate = ' + $_as_of_date\n      )#\n  \nAND\n#$_this.parent.idForExpression# < #queryValue(\n    $_this.parent.split.ref + '.dQuarter',\n    $_this.parent.split.ref + '.TheDate = ' +\n            queryValue($_this.parent.split.ref + '.NQ_TheDate',\n                       $_this.parent.split.ref + '.TheDate = ' + $_as_of_date\n            )\n)#",
+        "label" : "Current Quarter"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Current_Year",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n     #queryValue($_this.parent.split.ref + '.dYear',\n                 $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)#\nAND\n#$_this.parent.idForExpression# < #queryValue(\n    $_this.parent.split.ref + '.dYear',\n    $_this.parent.split.ref + '.TheDate = ' +\n           queryValue($_this.parent.split.ref + '.NY_TheDate',\n                      $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\n)#",
+        "label" : "Current Year"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Prior_WTD",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\r\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\r\n// validate: 1 = 1\r\n#$_this.parent.idForExpression# >=\r\n   #queryValue($_this.parent.split.ref + '.dWeek',\r\n               $_this.parent.split.ref + '.TheDate = ' +\r\n               queryValue($_this.parent.split.ref + '.PW_TheDate',\r\n                          $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\r\n            )#\r\nAND\r\n#$_this.parent.idForExpression# <=\r\n   #queryValue($_this.parent.split.ref + '.PW_TheDate',\r\n               $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)#",
+        "label" : "Prior WTD"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Prior_MTD",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n   #queryValue($_this.parent.split.ref + '.dMonth',\n               $_this.parent.split.ref + '.TheDate = ' +\n               queryValue($_this.parent.split.ref + '.PM_TheDate',\n                          $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\n            )#\nAND\n#$_this.parent.idForExpression# <=\n   #queryValue($_this.parent.split.ref + '.PM_TheDate',\n               $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)#",
+        "label" : "Prior MTD"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Prior_QTD",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n  #queryValue($_this.parent.split.ref + '.dQuarter',\n              $_this.parent.split.ref + '.TheDate = ' +\n              queryValue($_this.parent.split.ref + '.PQ_TheDate',\n                         $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\n  )#\n\nAND\n#$_this.parent.idForExpression# <=\n   #queryValue($_this.parent.split.ref + '.PQ_TheDate',\n               $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)#",
+        "label" : "Prior QTD"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Prior_YTD",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n  #queryValue($_this.parent.split.ref + '.dYear',\n              $_this.parent.split.ref + '.TheDate = ' +\n              queryValue($_this.parent.split.ref + '.PY_TheDate',\n                         $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\n  )#\n\nAND\n#$_this.parent.idForExpression# <=\n   #queryValue($_this.parent.split.ref + '.PY_TheDate',\n               $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)#",
+        "label" : "Prior YTD"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "WTD",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\r\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\r\n// validate: 1 = 1\r\n#$_this.parent.idForExpression# >=\r\n      #queryValue($_this.parent.split.ref + '.dWeek',\r\n                  $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)#\r\nAND\r\n#$_this.parent.idForExpression# <= #$_as_of_date#",
+        "label" : "WTD"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "MTD",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n      #queryValue($_this.parent.split.ref + '.dMonth',\n                  $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)#\nAND\n#$_this.parent.idForExpression# <= #$_as_of_date#",
+        "label" : "MTD"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "QTD",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n     #queryValue($_this.parent.split.ref + '.dQuarter',\n                $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)#\nAND\n#$_this.parent.idForExpression# <= #$_as_of_date#",
+        "label" : "QTD"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "YTD",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n        #queryValue($_this.parent.split.ref + '.dYear',\n                    $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)#\nAND\n#$_this.parent.idForExpression# <= #$_as_of_date#",
+        "label" : "YTD"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Same_Month_Last_Quarter",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n     #queryValue($_this.parent.split.ref + '.dMonth',\n                 $_this.parent.split.ref + '.TheDate = ' +\n                       queryValue($_this.parent.split.ref + '.PQ_TheDate',\n                                  $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\n)#\nAND\n#$_this.parent.idForExpression# <\n     #queryValue($_this.parent.split.ref + '.NM_TheDate',\n                 $_this.parent.split.ref + '.TheDate = ' +\n                       queryValue($_this.parent.split.ref + '.dMonth',\n                                  $_this.parent.split.ref + '.TheDate = ' +\n                                       queryValue($_this.parent.split.ref + '.PQ_TheDate',\n                                                  $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\n                                 )\n                )#",
+        "label" : "Same Month Last Quarter"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Same_Week_Last_Year",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\r\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\r\n// validate: 1 = 1\r\n#$_this.parent.idForExpression# >=\r\n     #queryValue($_this.parent.split.ref + '.dWeek',\r\n                 $_this.parent.split.ref + '.TheDate = ' +\r\n                       queryValue($_this.parent.split.ref + '.PY_TheDate',\r\n                                  $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\r\n)#\r\nAND\r\n#$_this.parent.idForExpression# <\r\n     #queryValue($_this.parent.split.ref + '.NW_TheDate',\r\n                 $_this.parent.split.ref + '.TheDate = ' +\r\n                       queryValue($_this.parent.split.ref + '.dWeek',\r\n                                  $_this.parent.split.ref + '.TheDate = ' +\r\n                                       queryValue($_this.parent.split.ref + '.PY_TheDate',\r\n                                                  $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\r\n                                 )\r\n                )#",
+        "label" : "Same Week Last Year"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Same_Month_Last_Year",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n     #queryValue($_this.parent.split.ref + '.dMonth',\n                 $_this.parent.split.ref + '.TheDate = ' +\n                       queryValue($_this.parent.split.ref + '.PY_TheDate',\n                                  $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\n)#\nAND\n#$_this.parent.idForExpression# <\n     #queryValue($_this.parent.split.ref + '.NM_TheDate',\n                 $_this.parent.split.ref + '.TheDate = ' +\n                       queryValue($_this.parent.split.ref + '.dMonth',\n                                  $_this.parent.split.ref + '.TheDate = ' +\n                                       queryValue($_this.parent.split.ref + '.PY_TheDate',\n                                                  $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\n                                 )\n                )#",
+        "label" : "Same Month Last Year"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Same_Quarter_Last_Year",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n     #queryValue($_this.parent.split.ref + '.dQuarter',\n                 $_this.parent.split.ref + '.TheDate = ' +\n                       queryValue($_this.parent.split.ref + '.PY_TheDate',\n                                  $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\n)#\nAND\n#$_this.parent.idForExpression# <\n     #queryValue($_this.parent.split.ref + '.NQ_TheDate',\n                 $_this.parent.split.ref + '.TheDate = ' +\n                       queryValue($_this.parent.split.ref + '.dQuarter',\n                                  $_this.parent.split.ref + '.TheDate = ' +\n                                       queryValue($_this.parent.split.ref + '.PY_TheDate',\n                                                  $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\n                                 )\n                )#",
+        "label" : "Same Quarter Last Year"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Same_MTD_Last_Quarter",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n     #queryValue($_this.parent.split.ref + '.dMonth',\n                 $_this.parent.split.ref + '.TheDate = ' +\n                       queryValue($_this.parent.split.ref + '.PQ_TheDate',\n                                  $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\n)#\nAND\n#$_this.parent.idForExpression# <=\n     #queryValue($_this.parent.split.ref + '.PQ_TheDate',\n                          $_this.parent.split.ref + '.TheDate = ' + $_as_of_date) #",
+        "label" : "Same MTD Last Quarter"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Same_MTD_Last_Year",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n     #queryValue($_this.parent.split.ref + '.dMonth',\n                 $_this.parent.split.ref + '.TheDate = ' +\n                       queryValue($_this.parent.split.ref + '.PY_TheDate',\n                                  $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\n)#\nAND\n#$_this.parent.idForExpression# <=\n     #queryValue($_this.parent.split.ref + '.PY_TheDate',\n                          $_this.parent.split.ref + '.TheDate = ' + $_as_of_date) #",
+        "label" : "Same MTD Last Year"
+      }
+    }, {
+      "filter" : {
+        "identifier" : "Same_QTD_Last_Year",
+        "expression" : "// This is a template expression that is used by the column property 'Lookup reference'.\n// To pass validation, the line below must remain as a comment. Do not remove the forward slashes.\n// validate: 1 = 1\n#$_this.parent.idForExpression# >=\n     #queryValue($_this.parent.split.ref + '.dQuarter',\n                 $_this.parent.split.ref + '.TheDate = ' +\n                       queryValue($_this.parent.split.ref + '.PY_TheDate',\n                                  $_this.parent.split.ref + '.TheDate = ' + $_as_of_date)\n)#\nAND\n#$_this.parent.idForExpression# <=\n     #queryValue($_this.parent.split.ref + '.PY_TheDate',\n                          $_this.parent.split.ref + '.TheDate = ' + $_as_of_date) #",
+        "label" : "Same QTD Last Year"
+      }
+    }, {
+      "folder" : {
+        "identifier" : "New_folder",
+        "item" : [ {
+          "queryItem" : {
+            "identifier" : "_row_id",
+            "propertyOverride" : [ "NEW" ],
+            "expression" : "_row_id",
+            "hidden" : false,
+            "nullable" : false,
+            "usage" : "identifier",
+            "description" : "Represents the row number identifier, as originally found in the uploaded file.",
+            "label" : "Row Id",
+            "datatype" : "BIGINT",
+            "regularAggregate" : "count",
+            "property" : [ {
+              "name" : "_MUI_propertySetByUser_hidden",
+              "value" : "\"true\""
+            }, {
+              "name" : "_MUI_propertySetByUser_usage",
+              "value" : "\"true\""
+            } ],
+            "facetDefinition" : {
+              "enabled" : "automatic"
+            },
+            "comment" : "Represents the row number identifier, as originally found in the uploaded file."
+          }
+        }, {
+          "queryItem" : {
+            "identifier" : "TheDate",
+            "propertyOverride" : [ "NEW" ],
+            "expression" : "TheDate",
+            "nullable" : false,
+            "datatype" : "DATE",
+            "usage" : "identifier",
+            "regularAggregate" : "countDistinct",
+            "facetDefinition" : {
+              "enabled" : "automatic"
+            },
+            "label" : "TheDate",
+            "taxonomy" : [ {
+              "domain" : "cognos",
+              "family" : "cDate",
+              "class" : "cTime"
+            } ]
+          }
+        }, {
+          "queryItem" : {
+            "identifier" : "PD_TheDate",
+            "propertyOverride" : [ "NEW" ],
+            "expression" : "PD_TheDate",
+            "nullable" : false,
+            "datatype" : "DATE",
+            "usage" : "identifier",
+            "regularAggregate" : "countDistinct",
+            "facetDefinition" : {
+              "enabled" : "automatic"
+            },
+            "label" : "PD_TheDate",
+            "taxonomy" : [ {
+              "domain" : "cognos",
+              "family" : "cDate",
+              "class" : "cTime"
+            } ]
+          }
+        }, {
+          "queryItem" : {
+            "identifier" : "ND_TheDate",
+            "propertyOverride" : [ "NEW" ],
+            "expression" : "ND_TheDate",
+            "nullable" : false,
+            "datatype" : "DATE",
+            "usage" : "identifier",
+            "regularAggregate" : "countDistinct",
+            "facetDefinition" : {
+              "enabled" : "automatic"
+            },
+            "label" : "ND_TheDate",
+            "taxonomy" : [ {
+              "domain" : "cognos",
+              "family" : "cDate",
+              "class" : "cTime"
+            } ]
+          }
+        }, {
+          "queryItem" : {
+            "identifier" : "dYear",
+            "propertyOverride" : [ "NEW" ],
+            "expression" : "dYear",
+            "nullable" : false,
+            "datatype" : "DATE",
+            "usage" : "identifier",
+            "regularAggregate" : "countDistinct",
+            "facetDefinition" : {
+              "enabled" : "automatic"
+            },
+            "label" : "dYear",
+            "taxonomy" : [ {
+              "domain" : "cognos",
+              "family" : "cDate",
+              "class" : "cTime"
+            } ]
+          }
+        }, {
+          "queryItem" : {
+            "identifier" : "PY_TheDate",
+            "propertyOverride" : [ "NEW" ],
+            "expression" : "PY_TheDate",
+            "nullable" : false,
+            "datatype" : "DATE",
+            "usage" : "identifier",
+            "regularAggregate" : "countDistinct",
+            "facetDefinition" : {
+              "enabled" : "automatic"
+            },
+            "label" : "PY_TheDate",
+            "taxonomy" : [ {
+              "domain" : "cognos",
+              "family" : "cDate",
+              "class" : "cTime"
+            } ]
+          }
+        }, {
+          "queryItem" : {
+            "identifier" : "NY_TheDate",
+            "propertyOverride" : [ "NEW" ],
+            "expression" : "NY_TheDate",
+            "nullable" : false,
+            "datatype" : "DATE",
+            "usage" : "identifier",
+            "regularAggregate" : "countDistinct",
+            "facetDefinition" : {
+              "enabled" : "automatic"
+            },
+            "label" : "NY_TheDate",
+            "taxonomy" : [ {
+              "domain" : "cognos",
+              "family" : "cDate",
+              "class" : "cTime"
+            } ]
+          }
+        }, {
+          "queryItem" : {
+            "identifier" : "dQuarter",
+            "propertyOverride" : [ "NEW" ],
+            "expression" : "dQuarter",
+            "nullable" : false,
+            "datatype" : "DATE",
+            "usage" : "identifier",
+            "regularAggregate" : "countDistinct",
+            "facetDefinition" : {
+              "enabled" : "automatic"
+            },
+            "label" : "dQuarter",
+            "taxonomy" : [ {
+              "domain" : "cognos",
+              "family" : "cDate",
+              "class" : "cTime"
+            } ]
+          }
+        }, {
+          "queryItem" : {
+            "identifier" : "NQ_TheDate",
+            "propertyOverride" : [ "NEW" ],
+            "expression" : "NQ_TheDate",
+            "nullable" : false,
+            "datatype" : "DATE",
+            "usage" : "identifier",
+            "regularAggregate" : "countDistinct",
+            "facetDefinition" : {
+              "enabled" : "automatic"
+            },
+            "label" : "NQ_TheDate",
+            "taxonomy" : [ {
+              "domain" : "cognos",
+              "family" : "cDate",
+              "class" : "cTime"
+            } ]
+          }
+        }, {
+          "queryItem" : {
+            "identifier" : "PQ_TheDate",
+            "propertyOverride" : [ "NEW" ],
+            "expression" : "PQ_TheDate",
+            "nullable" : false,
+            "datatype" : "DATE",
+            "usage" : "identifier",
+            "regularAggregate" : "countDistinct",
+            "facetDefinition" : {
+              "enabled" : "automatic"
+            },
+            "label" : "PQ_TheDate",
+            "taxonomy" : [ {
+              "domain" : "cognos",
+              "family" : "cDate",
+              "class" : "cTime"
+            } ]
+          }
+        }, {
+          "queryItem" : {
+            "identifier" : "dMonth",
+            "propertyOverride" : [ "NEW" ],
+            "expression" : "dMonth",
+            "nullable" : false,
+            "datatype" : "DATE",
+            "usage" : "identifier",
+            "regularAggregate" : "countDistinct",
+            "facetDefinition" : {
+              "enabled" : "automatic"
+            },
+            "label" : "dMonth",
+            "taxonomy" : [ {
+              "domain" : "cognos",
+              "family" : "cDate",
+              "class" : "cTime"
+            } ]
+          }
+        }, {
+          "queryItem" : {
+            "identifier" : "PM_TheDate",
+            "propertyOverride" : [ "NEW" ],
+            "expression" : "PM_TheDate",
+            "nullable" : false,
+            "datatype" : "DATE",
+            "usage" : "identifier",
+            "regularAggregate" : "countDistinct",
+            "facetDefinition" : {
+              "enabled" : "automatic"
+            },
+            "label" : "PM_TheDate",
+            "taxonomy" : [ {
+              "domain" : "cognos",
+              "family" : "cDate",
+              "class" : "cTime"
+            } ]
+          }
+        }, {
+          "queryItem" : {
+            "identifier" : "NM_TheDate",
+            "propertyOverride" : [ "NEW" ],
+            "expression" : "NM_TheDate",
+            "nullable" : false,
+            "datatype" : "DATE",
+            "usage" : "identifier",
+            "regularAggregate" : "countDistinct",
+            "facetDefinition" : {
+              "enabled" : "automatic"
+            },
+            "label" : "NM_TheDate",
+            "taxonomy" : [ {
+              "domain" : "cognos",
+              "family" : "cDate",
+              "class" : "cTime"
+            } ]
+          }
+        }, {
+          "queryItem" : {
+            "identifier" : "dWeek",
+            "propertyOverride" : [ "NEW" ],
+            "expression" : "dWeek",
+            "nullable" : false,
+            "datatype" : "DATE",
+            "usage" : "identifier",
+            "regularAggregate" : "countDistinct",
+            "facetDefinition" : {
+              "enabled" : "automatic"
+            },
+            "label" : "dWeek",
+            "taxonomy" : [ {
+              "domain" : "cognos",
+              "family" : "cDate",
+              "class" : "cTime"
+            } ]
+          }
+        }, {
+          "queryItem" : {
+            "identifier" : "PW_TheDate",
+            "propertyOverride" : [ "NEW" ],
+            "expression" : "PW_TheDate",
+            "nullable" : false,
+            "datatype" : "DATE",
+            "usage" : "identifier",
+            "regularAggregate" : "countDistinct",
+            "facetDefinition" : {
+              "enabled" : "automatic"
+            },
+            "label" : "PW_TheDate",
+            "taxonomy" : [ {
+              "domain" : "cognos",
+              "family" : "cDate",
+              "class" : "cTime"
+            } ]
+          }
+        }, {
+          "queryItem" : {
+            "identifier" : "NW_TheDate",
+            "propertyOverride" : [ "NEW" ],
+            "expression" : "NW_TheDate",
+            "nullable" : false,
+            "datatype" : "DATE",
+            "usage" : "identifier",
+            "regularAggregate" : "countDistinct",
+            "facetDefinition" : {
+              "enabled" : "automatic"
+            },
+            "label" : "NW_TheDate",
+            "taxonomy" : [ {
+              "domain" : "cognos",
+              "family" : "cDate",
+              "class" : "cTime"
+            } ]
+          }
+        } ],
+        "propertyOverride" : [ "label", "property._MUI_propertySetByUser_label", "property._MUI_propertySetByUser_hidden", "hidden" ],
+        "hidden" : false,
+        "property" : [ {
+          "name" : "_MUI_propertySetByUser_label",
+          "value" : "\"true\""
+        }, {
+          "name" : "_MUI_propertySetByUser_hidden",
+          "value" : "\"true\""
+        } ],
+        "label" : "Calendar"
+      }
+    } ],
+    "propertyOverride" : [ "NEW" ],
+    "hidden" : true,
+    "property" : [ {
+      "name" : "_MUI_propertySetByUser_label",
+      "value" : "\"true\""
+    }, {
+      "name" : "_MUI_propertySetByUser_hidden",
+      "value" : "\"true\""
+    }, {
+      "name" : "_MUI_propertySetByUser_identifier",
+      "value" : "\"true\""
+    }, {
+      "name" : "_MUI_diagramNodePosition",
+      "value" : "{\"x\":439,\"y\":306.5}"
+    } ],
+    "label" : "Fiscal Calendar"
+  } ],
+  "property" : [ {
+    "name" : "_MUI_propertySetByUser_comment",
+    "value" : "\"true\""
+  } ],
+  "comment" : "A fiscal calendar beginning March 1st. This sample data module contains a set of time-related filters that can be combined with other data modules to support the analysis of measures by time periods such as current month, year to date, etc.",
+  "metadataTreeView" : [ {
+    "folderItem" : [ {
+      "ref" : "FiscalCalendar_csv"
+    } ]
+  } ]
+}
